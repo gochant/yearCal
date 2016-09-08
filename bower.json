@@ -1,0 +1,23 @@
+{
+  "name": "yearCal",
+  "authors": [
+    "gochant <guochant@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "^3.1.0",
+    "bootstrap": "^3.3.7",
+    "kendo-ui": "^2016.2.812",
+    "qtip2": "^2.2.1"
+  }
+}
