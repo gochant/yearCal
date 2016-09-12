@@ -1,3 +1,6 @@
+/**
+ * widget: YearCal
+ */
 (function () {
 
     var kendo = window.kendo;
@@ -272,7 +275,6 @@
             name: 'YearCal',
             year: '',
             dataSource: null,
-            action: function(){},
             autoBind: true,
             template: '<div class="cal">' +
             '<div class="cal__header">' +
@@ -330,6 +332,10 @@
             '</div>' +
             '</div>'
         },
+        events: [
+            'change',
+            'edit'
+        ],
         dataProvider: dataProvider,
         init: function (element, options) {
             var me = this;
@@ -488,7 +494,9 @@
                 me.select($target);
             });
             this.popup.elements.tooltip.on(clickNS, '.btn', function(e){
-                me.options.action.call(me, e);
+                me.trigger('edit', {
+                    target: e.currentTarget
+                })
             })
         },
         destroy: function () {

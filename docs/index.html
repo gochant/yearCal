@@ -5,29 +5,28 @@
     <title>Title</title>
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="../bower_components/qtip2/jquery.qtip.css">
-    <link rel="stylesheet" href="../src/less/index.css">
+    <link rel="stylesheet" href="../dist/index.css">
     <style>
         body {
             font-family: 'Microsoft YaHei Mono', sans-serif;
         }
 
-
         #test {
             width: 1030px;
             margin: 0 auto;
         }
-        .hr-sm{
+
+        .hr-sm {
             margin: 10px 0;
         }
     </style>
 </head>
 <body>
-<div id="test"></div>
+<div id="test" data-role="yearcal" data-bind="source: list" data-year="2015"></div>
 <script src="../bower_components/jquery/dist/jquery.js"></script>
 <script src="../bower_components/kendo-ui/js/kendo.ui.core.min.js"></script>
 <script src="../bower_components/qtip2/jquery.qtip.js"></script>
-<script src="../src/js/lunar.js"></script>
-<script src="../src/js/index.js"></script>
+<script src="../dist/index.js"></script>
 <script>
     var y2015 = {
         "d0101": 2,
@@ -69,15 +68,23 @@
             state: s
         };
 
-    })
-
-    $('#test').kendoYearCal({
-        dataSource: data,
-        year: 2015,
-        action: function (e) {
-            console.log(e);
-        }
     });
+
+    kendo.bind('body', {
+        list: data
+    });
+
+    var inst = kendo.widgetInstance($('#test'))
+    inst.bind('edit', function (e) {
+        console.log(e);
+    })
+    //    $('#test').kendoYearCal({
+    //        dataSource: data,
+    //        year: 2015,
+    //        action: function (e) {
+    //            console.log(e);
+    //        }
+    //    });
 </script>
 </body>
 </html>
