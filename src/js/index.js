@@ -377,6 +377,14 @@
             this._html();
             this.trigger('changeYear', this.year);
         },
+        setDataSource: function(dataSource){
+            this.options.dataSource = dataSource;
+            this._dataSource();
+
+            if (this.options.autoBind) {
+                dataSource.fetch();
+            }
+        },
         _dataSource: function () {
             var me = this;
 
