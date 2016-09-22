@@ -863,14 +863,14 @@ var lunarCalendar = (function () {
             '<div> #: data.lunar.monthName # #: data.lunar.dayName # #: data.dayName #</div>' +
             '<hr class="hr-sm" />' +
             '<div>' +
-            '# if(data.weekday && data.weekday !==0){ #' +
-            '<button data-value="0" class="btn-cancel btn btn-default btn-xs">撤销设置</button>' +
+            '# if(data.dayState && data.dayState !==0){ #' +
+            '<button data-value="0" class="btn-cancel btn btn-default btn-xs">撤销设置</button> ' +
             '# } #' +
-            '# if(data.weekday !==1){ #' +
-            '<button data-value="1" class="btn-cancel btn btn-default btn-xs">设为工作日</button>' +
+            '# if(data.dayState !==1){ #' +
+            '<button data-value="1" class="btn-cancel btn btn-default btn-xs">设为工作日</button> ' +
             '# } #' +
-            '# if(data.weekday !==2){ #' +
-            '<button data-value="2" class="btn-cancel btn btn-default btn-xs">设为休息日</button>' +
+            '# if(data.dayState !==2){ #' +
+            '<button data-value="2" class="btn-cancel btn btn-default btn-xs">设为休息日</button> ' +
             '# } #' +
             '</div>' +
             '</div>'

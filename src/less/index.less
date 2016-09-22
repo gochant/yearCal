@@ -1,15 +1,22 @@
-// Color variables (appears count calculates by raw css)
-@color0: #ffffff; // Appears 9 times
-@color1: #cd310d; // Appears 6 times
-@color2: #b32b0c; // Appears 4 times
-@color3: #ae2a0c; // Appears 2 times
-@color4: #bb330f; // Appears 2 times
-@color5: #d94215; // Appears 2 times
-@color6: #827e7d; // Appears 2 times
+@import "../../bower_components/bootstrap/less/variables";
 
-body {
-  background: #e0e0e0;
-}
+@ycal-border: @panel-info-border;
+@ycal-header-bg:@panel-info-heading-bg;
+@ycal-header-text: @panel-info-text;
+@ycal-cell-border:#e6e6e6;
+@ycal-cell-text: #2b2b2b;
+@ycal-cell-head-text: #9e9e9e;
+@ycal-cell-weekend-text: #e02d2d;
+@ycal-cell-hover-border:#fb0;
+@ycal-cell-active-border:@ycal-cell-hover-border;
+@ycal-cell-active-bg:@ycal-cell-hover-border;
+@ycal-cell-active-text: #fff;
+@ycal-record-bg:#fff0f0;
+@ycal-record-off-day-tag-bg:red;
+@ycal-record-work-day-tag-bg: gray;
+@ycal-record-tag-text: whitesmoke;
+@ycal-lunar-name-text:#999;
+@ycal-festival-text:#e02d2d;
 
 .cal {
   display: inline-table;
@@ -17,13 +24,13 @@ body {
   background: white;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
   min-height: 335px;
+  border: 1px solid @ycal-border;
 }
 
 .cal__header {
-  background: -moz-linear-gradient(top, @color2, @color1);
-  background: -webkit-gradient(linear, left top, left bottom, from(@color2), to(@color1));
-  background: @color1;
-  color: @color0;
+  background: gradient(linear, left top, left bottom, from(@ycal-header-bg), to(lighten(@ycal-header-bg, 10%)));
+  background: @ycal-header-bg;
+  color: @ycal-header-text;
   cursor: default;
   font-weight: bold;
   height: 34px;
@@ -54,9 +61,9 @@ body {
 .cal__cell {
   width: 44px;
   height: 44px;
-  color: #2b2b2b;
+  color: @ycal-cell-text;
   text-align: center;
-  border: 1px solid #e6e6e6;
+  border: 1px solid @ycal-cell-border;
   cursor: default;
 
   &:last-child {
@@ -69,15 +76,12 @@ body {
 }
 
 .cal__cell-today {
-  -moz-box-shadow: 1px 1px 0px @color0 inset;
-  -webkit-box-shadow: 1px 1px 0px @color0 inset;
   background: #ededed;
-  box-shadow: 1px 1px 0px @color0 inset;
   color: #8c8c8c;
 }
 
 .cal__cell-head {
-  color: #9e9e9e;
+  color: @ycal-cell-head-text;
   height: 26px;
   line-height: 26px;
   text-transform: uppercase;
@@ -85,7 +89,7 @@ body {
 }
 
 .cal__cell-weekend {
-  color: #e02d2d;
+  color: @ycal-cell-weekend-text;
 }
 
 .cal__day {
@@ -98,20 +102,20 @@ body {
   border: 2px solid transparent;
 
   &:hover {
-    border-color: #fb0;
+    border-color: @ycal-cell-hover-border;
   }
   &.active {
-    border-color: #fb0;
-    background-color: #fb0;
+    border-color: @ycal-cell-active-border;
+    background-color: @ycal-cell-active-bg;
 
     > span{
-      color: white;
+      color: @ycal-cell-active-text;
     }
   }
 }
 
 .cal__day-record {
-  background: #fff0f0;
+  background: @ycal-record-bg;
   position: relative;
 
   &:before {
@@ -120,20 +124,20 @@ body {
     font-size: 11px;
     top: -2px;
     padding: 1px;
-    color: whitesmoke;
+    color: @ycal-record-tag-text;
   }
 
   &.off_day {
     &:before {
       content: '休';
-      background: red;
+      background: @ycal-record-off-day-tag-bg;
     }
   }
 
   &.work_day {
     &:before {
       content: '班';
-      background: gray;
+      background: @ycal-record-work-day-tag-bg;
     }
   }
 }
@@ -151,9 +155,9 @@ body {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  color: #999;
+  color: @ycal-lunar-name-text;
 }
 
 .cal__info_festival {
-  color: #e02d2d;
+  color: @ycal-festival-text;
 }

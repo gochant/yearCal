@@ -9,6 +9,7 @@
     <style>
         body {
             font-family: 'Microsoft YaHei Mono', sans-serif;
+            background: #e0e0e0;
         }
 
         #test {
@@ -22,6 +23,12 @@
     </style>
 </head>
 <body>
+<select name="" id="year">
+    <option value="2014">2014</option>
+    <option value="2015" selected="selected">2015</option>
+    <option value="2016">2016</option>
+    <option value="2017">2017</option>
+</select>
 <div id="test" data-role="yearcal" data-bind="source: list" data-year="2015"></div>
 <script src="../bower_components/jquery/dist/jquery.js"></script>
 <script src="../bower_components/kendo-ui/js/kendo.ui.core.min.js"></script>
@@ -71,13 +78,19 @@
     });
 
     kendo.bind('body', {
-        list: data
+        list: data,
+        year: 2015
     });
 
     var inst = kendo.widgetInstance($('#test'))
     inst.bind('edit', function (e) {
-        console.log(e);
-    })
+        var v = $(e.target).data('value');
+        console.log(v);
+    });
+    $('#year').on('change', function () {
+        inst.changeYear($(this).val());
+        inst.dataSource.fetch();
+    });
     //    $('#test').kendoYearCal({
     //        dataSource: data,
     //        year: 2015,
