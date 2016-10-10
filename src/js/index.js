@@ -422,6 +422,9 @@
         refresh: function () {
             var me = this;
             var view = me.dataSource.view();
+            if(view.length > 0){
+                me.element.find('.cal__day').removeClass('cal__day-record off_day work_day');
+            }
             for (var idx = 0, length = view.length; idx < length; idx++) {
                 var item = view[idx];
                 // 设置数据的状态

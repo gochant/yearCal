@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="../bower_components/qtip2/jquery.qtip.css">
-    <link rel="stylesheet" href="../dist/index.css">
+    <title>Kendo yearCal</title>
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="vendor/qtip2/jquery.qtip.css">
+    <link rel="stylesheet" href="index.css">
     <style>
         body {
             font-family: 'Microsoft YaHei Mono', sans-serif;
@@ -30,10 +30,10 @@
     <option value="2017">2017</option>
 </select>
 <div id="test" data-role="yearcal" data-bind="source: list" data-year="2015"></div>
-<script src="../bower_components/jquery/dist/jquery.js"></script>
-<script src="../bower_components/kendo-ui/js/kendo.ui.core.min.js"></script>
-<script src="../bower_components/qtip2/jquery.qtip.js"></script>
-<script src="../dist/index.js"></script>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/kendoui/kendo.ui.core.min.js"></script>
+<script src="vendor/qtip2/jquery.qtip.min.js"></script>
+<script src="index.js"></script>
 <script>
     var y2015 = {
         "d0101": 2,
@@ -85,7 +85,18 @@
     var inst = kendo.widgetInstance($('#test'))
     inst.bind('edit', function (e) {
         var v = $(e.target).data('value');
-        console.log(v);
+        var id = $(e.target).closest('[data-id]').data('id');
+        var list = inst.dataSource;
+        var item = list.get(id);
+        if (item != null) {
+            item.set('state', v);
+        } else {
+            list.add({id: id, state: v})
+        }
+        inst.popup.hide();
+    });
+    inst.dataSource.bind('change', function () {
+        inst.dataSource
     });
     $('#year').on('change', function () {
         inst.changeYear($(this).val());
